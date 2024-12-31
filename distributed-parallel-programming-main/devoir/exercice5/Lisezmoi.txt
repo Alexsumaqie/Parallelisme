@@ -1,0 +1,52 @@
+=======
+ Objet
+=======
+
+  Ce fichier d�crit la fa�on d'utiliser cmake pour g�n�rer les executables.
+
+=========
+ Etape 1 (cr�er les sous-r�pertoire n�cessaires)
+=========
+
+  Les commandes communes � toutes les plateformes sont list�es dans le fichier
+CMakeLists.txt. L'adaptation � votre plateforme s'effectue par le biais du 
+fichier CMakeCache.txt.
+
+  Dans le sous-r�pertoire Correction/, tapez la commande:
+     cmake -G"Unix Makefiles"
+qui a pour effet de g�n�rer les sous-r�pertoires et fichiers suivants :
+   bin/
+   CMakeFiles/
+   Makefile
+   CMakeCache.txt
+   cmake_install.cmake
+
+  Le sous-r�pertoire bin/ est destin� � accueillir l'ex�cutable tandis que
+le sous-r�pertoire CMakeFiles/ accueillera les fichiers objets produits par le 
+compilateur.
+
+=========
+ Etape 2 (modification du fichier CMakeCache.txt)
+=========
+
+  Dans le fichier CMakeCache.txt, remplacez les lignes suivantes :
+
+Ligne 22 : 
+  CMAKE_BUILD_TYPE:STRING=
+par :
+  CMAKE_BUILD_TYPE:STRING=Release
+
+Ligne 42:
+  CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
+par:
+  CMAKE_CXX_FLAGS_RELEASE:STRING=-Wall -Wextra -march=native -O3
+
+  L'effet de ces deux commandes et de fournir les options de compilation et
+d'optimisation propre � votre compilateur. Le fichier ex�cutable sera maintenant
+g�n�r� dans le sous-r�pertoire bin/Release.
+
+=========
+ Etape 3 (g�n�ration des executables).
+=========
+
+  Dans le sous-repertoire Correction/, tapez simplement: make.
